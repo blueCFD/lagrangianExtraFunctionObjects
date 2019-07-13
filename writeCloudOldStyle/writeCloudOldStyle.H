@@ -5,6 +5,9 @@
     \\  /    A nd           | Copyright (C) 2012-2016 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
+July 2019: Bruno Santos @ FSD blueCAPE Lda
+           - created function object based on OpenFOAM's cloudInfo
+-------------------------------------------------------------------------------
 License
     This file is derivative work of OpenFOAM.
 
@@ -28,24 +31,25 @@ Group
     grpLagrangianFunctionObjects
 
 Description
-    Outputs Lagrangian cloud information to a file.
-
-    The current outputs include:
-    - total current number of parcels
-    - total current mass of parcels
+    Writes Lagrangian cloud's positions to the old format, into the file
+    'positions.orig'.
 
     Example of function object specification:
     \verbatim
     writeCloudOldStyle1
     {
+    writeCloudOldStyle1
+    {
         type        writeCloudOldStyle;
-        libs        ("libcloudFunctionObjects.so");
-        ...
+        libs        ("liblagrangianExtraFunctionObjects.so");
+
+        writeControl writeTime;
+
         clouds
         (
-            kinematicCloud1
-            thermoCloud1
+            kinematicCloud
         );
+    }
     }
     \endverbatim
 
@@ -62,7 +66,6 @@ Usage
 See also
     Foam::functionObject
     Foam::functionObjects::regionFunctionObject
-    Foam::functionObjects::logFiles
 
 SourceFiles
     writeCloudOldStyle.C

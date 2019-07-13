@@ -5,8 +5,11 @@
     \\  /    A nd           | Copyright (C) 2011-2017 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
+July 2019: Bruno Santos @ FSD blueCAPE Lda
+           - created function object based on OpenFOAM's cloudInfo
+-------------------------------------------------------------------------------
 License
-    This file is part of OpenFOAM.
+    This file is derivative work of OpenFOAM.
 
     OpenFOAM is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
@@ -25,7 +28,7 @@ Class
     Foam::IOPositionOld
 
 Description
-    Helper IO class to read and write particle positions
+    Helper IO class to read and write particle positions in the old format.
 
 SourceFiles
     IOPositionOld.C
