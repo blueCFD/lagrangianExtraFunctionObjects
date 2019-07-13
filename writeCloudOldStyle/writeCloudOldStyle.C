@@ -26,6 +26,7 @@ License
 #include "writeCloudOldStyle.H"
 #include "basicKinematicCollidingCloud.H"
 #include "basicKinematicCollidingParcel.H"
+#include "IOPositionOld.H"
 #include "dictionary.H"
 #include "PstreamReduceOps.H"
 #include "addToRunTimeSelectionTable.H"
@@ -116,12 +117,21 @@ bool Foam::functionObjects::writeCloudOldStyle::write()
             const basicKinematicCollidingCloud& cloud =
                 dynamic_cast<const basicKinematicCollidingCloud&>(kcloud);
 
+            
+            IOPositionOld<basicKinematicCollidingCloud> ioP(cloud);
+            ioP.write(cloud.nParcels() > 0);
+
+            /*
+            //If you want direct control over the output, here is an example to
+            //write to screen from all processors
+
             forAllConstIter(basicKinematicCollidingCloud, cloud, pIter)
             {
                 const basicKinematicCollidingParcel& p = pIter();
 
                 Pout << "p:" << p.position() << endl;
             }
+            */
         }
 
     }
