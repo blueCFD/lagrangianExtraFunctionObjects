@@ -4,7 +4,8 @@ lagrangianExtraFunctionObjects
 **lagrangianExtraFunctionObjects** is a function object library re-adapted from
 OpenFOAM 5, to write to disk in the old `positions` file format.
 
-**Note**: This branch `OF5x` refers to the code adapted to build with OpenFOAM 5.x.
+**Note**: This branch `blueCFD-Core-2017` refers to the code adapted to build
+with blueCFD-Core 2017.
 
 * Please see the other branches for which OpenFOAM version you can use this on.
 
@@ -58,7 +59,7 @@ For getting and building from git:
 ```
 git clone git://github.com/blueCFD/lagrangianExtraFunctionObjects.git
 cd lagrangianExtraFunctionObjects
-git checkout OF5x
+git checkout blueCFD-Core-2017
 wmake
 wclean
 ```
@@ -66,9 +67,9 @@ wclean
 Or for getting and building from zip:
 
 ```
-wget "https://github.com/blueCFD/lagrangianExtraFunctionObjects/archive/OF5x.zip" -O lagrangianExtraFunctionObjects.zip
+wget "https://github.com/blueCFD/lagrangianExtraFunctionObjects/archive/blueCFD-Core-2017.zip" -O lagrangianExtraFunctionObjects.zip
 unzip lagrangianExtraFunctionObjects.zip
-cd lagrangianExtraFunctionObjects-OF5x
+cd lagrangianExtraFunctionObjects-blueCFD-Core-2017
 wmake
 wclean
 ```

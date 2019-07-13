@@ -31,7 +31,7 @@ License
 #include "basicKinematicCollidingParcel.H"
 #include "IOPositionOld.H"
 #include "dictionary.H"
-#include "PstreamReduceOps.H"
+#include "PstreamReduceOps.T.H"
 #include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
