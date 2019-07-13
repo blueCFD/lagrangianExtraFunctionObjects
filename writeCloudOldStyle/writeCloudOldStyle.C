@@ -111,16 +111,18 @@ bool Foam::functionObjects::writeCloudOldStyle::write()
         const kinematicCloud& kcloud =
             obr_.lookupObject<kinematicCloud>(cloudName);
 
-        const basicKinematicCollidingCloud& cloud =
-            dynamic_cast<const basicKinematicCollidingCloud&>(kcloud);
-
-        forAllConstIter(basicKinematicCollidingCloud, cloud, pIter)
+        if (isA<basicKinematicCollidingCloud>(kcloud))
         {
-            const basicKinematicCollidingParcel& p = pIter();
+            const basicKinematicCollidingCloud& cloud =
+                dynamic_cast<const basicKinematicCollidingCloud&>(kcloud);
 
-            Pout << "p:" << p.position() << endl;
+            forAllConstIter(basicKinematicCollidingCloud, cloud, pIter)
+            {
+                const basicKinematicCollidingParcel& p = pIter();
+
+                Pout << "p:" << p.position() << endl;
+            }
         }
-
 
     }
 
