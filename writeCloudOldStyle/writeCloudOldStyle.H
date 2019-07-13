@@ -88,18 +88,19 @@ namespace functionObjects
 
 class writeCloudOldStyle
 :
-    public regionFunctionObject,
-    public logFiles
+    public regionFunctionObject
 {
 protected:
 
     // Protected Member Functions
 
-        //- File header information
-        virtual void writeFileHeader(const label i);
-
 
 private:
+
+    // Private data
+
+        //- Cloud names
+        wordList names;
 
     // Private member functions
 

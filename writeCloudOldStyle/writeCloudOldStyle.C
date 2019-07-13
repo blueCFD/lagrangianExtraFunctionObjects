@@ -24,7 +24,8 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "writeCloudOldStyle.H"
-#include "kinematicCloud.H"
+#include "basicKinematicCollidingCloud.H"
+#include "basicKinematicCollidingParcel.H"
 #include "dictionary.H"
 #include "PstreamReduceOps.H"
 #include "addToRunTimeSelectionTable.H"
@@ -47,18 +48,6 @@ namespace functionObjects
 }
 
 
-// * * * * * * * * * * * * Protected Member Functions  * * * * * * * * * * * //
-
-void Foam::functionObjects::writeCloudOldStyle::writeFileHeader(const label i)
-{
-    writeHeader(file(), "Cloud information");
-    writeCommented(file(), "Time");
-    writeTabbed(file(), "nParcels");
-    writeTabbed(file(), "mass");
-    file() << endl;
-}
-
-
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
 
 Foam::functionObjects::writeCloudOldStyle::writeCloudOldStyle
@@ -68,8 +57,7 @@ Foam::functionObjects::writeCloudOldStyle::writeCloudOldStyle
     const dictionary& dict
 )
 :
-    regionFunctionObject(name, runTime, dict),
-    logFiles(obr_, name)
+    regionFunctionObject(name, runTime, dict)
 {
     read(dict);
 }
@@ -87,15 +75,15 @@ bool Foam::functionObjects::writeCloudOldStyle::read(const dictionary& dict)
 {
     regionFunctionObject::read(dict);
 
-    logFiles::resetNames(dict.lookup("clouds"));
+    names = wordList(dict.lookup("clouds"));
 
     Info<< type() << " " << name() << ": ";
-    if (names().size())
+    if (names.size())
     {
         Info<< "applying to clouds:" << nl;
-        forAll(names(), i)
+        forAll(names, i)
         {
-            Info<< "    " << names()[i] << nl;
+            Info<< "    " << names[i] << nl;
         }
         Info<< endl;
     }
@@ -116,27 +104,24 @@ bool Foam::functionObjects::writeCloudOldStyle::execute()
 
 bool Foam::functionObjects::writeCloudOldStyle::write()
 {
-    logFiles::write();
-
-    forAll(names(), i)
+    forAll(names, i)
     {
-        const word& cloudName = names()[i];
+        const word& cloudName = names[i];
 
-        const kinematicCloud& cloud =
+        const kinematicCloud& kcloud =
             obr_.lookupObject<kinematicCloud>(cloudName);
 
-        label nParcels = returnReduce(cloud.nParcels(), sumOp<label>());
-        scalar massInSystem =
-            returnReduce(cloud.massInSystem(), sumOp<scalar>());
+        const basicKinematicCollidingCloud& cloud =
+            dynamic_cast<const basicKinematicCollidingCloud&>(kcloud);
 
-        if (Pstream::master())
+        forAllConstIter(basicKinematicCollidingCloud, cloud, pIter)
         {
-            writeTime(file(i));
-            file(i)
-                << token::TAB
-                << nParcels << token::TAB
-                << massInSystem << endl;
+            const basicKinematicCollidingParcel& p = pIter();
+
+            Pout << "p:" << p.position() << endl;
         }
+
+
     }
 
     return true;
