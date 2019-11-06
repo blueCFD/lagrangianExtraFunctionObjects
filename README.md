@@ -57,6 +57,7 @@ How to get+build lagrangianExtraFunctionObjects
 For getting and building from git:
 
 ```
+user
 git clone git://github.com/blueCFD/lagrangianExtraFunctionObjects.git
 cd lagrangianExtraFunctionObjects
 git checkout blueCFD-Core-2017
@@ -67,11 +68,29 @@ wclean
 Or for getting and building from zip:
 
 ```
+user
 wget "https://github.com/blueCFD/lagrangianExtraFunctionObjects/archive/blueCFD-Core-2017.zip" -O lagrangianExtraFunctionObjects.zip
 unzip lagrangianExtraFunctionObjects.zip
 cd lagrangianExtraFunctionObjects-blueCFD-Core-2017
 wmake
 wclean
+```
+
+**Note**: The output that comes from the commands `wmake` and `wclean` are as follows:
+
+```
+$ wmake
+wmakeLnInclude: linking include files to ./lnInclude
+Making dependency list for source file writeCloudOldStyle.C
+$(/home/ofuser/blueCFD/OpenFOAM-5.x/wmake/scripts/makeReinterpretExePath x86_64-w64-mingw32-g++) -std=c++11 -Dmingw_w64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -DWIN64 -DLITTLE_ENDIAN -DWIN64 -DLITTLE_ENDIAN -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -O2 -DNDEBUG -gdwarf  -DNoRepository -ftemplate-depth-100 -D_FILE_OFFSET_BITS=64 -D_MODE_T_ -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/finiteVolume/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/transportModels -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/transportModels/incompressible/singlePhaseTransportModel -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/meshTools/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/lagrangian/basic/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/lagrangian/intermediate/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/lagrangian/DSMC/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/regionModels/regionModel/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/regionModels/surfaceFilmModels/lnInclude @Make/mingw_w64GccDPInt32Opt/includeHeaderPaths -IlnInclude -I. -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/OpenFOAM/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/OSspecific/MSwindows/lnInclude   -c writeCloudOldStyle/writeCloudOldStyle.C -o D:/DEVELO~1/Core/BLUECF~2/ofuser-of5/lagrangianExtraFunctionObjects/Make/mingw_w64GccDPInt32Opt/writeCloudOldStyle/writeCloudOldStyle.o
+$(/home/ofuser/blueCFD/OpenFOAM-5.x/wmake/scripts/makeReinterpretExePath windres) Make/mingw_w64GccDPInt32Opt/version_of_build.rc Make/mingw_w64GccDPInt32Opt/version_of_build.o
+$(/home/ofuser/blueCFD/OpenFOAM-5.x/wmake/scripts/makeReinterpretExePath x86_64-w64-mingw32-g++) -std=c++11 -Dmingw_w64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -DWIN64 -DLITTLE_ENDIAN -DWIN64 -DLITTLE_ENDIAN -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -O2 -DNDEBUG -gdwarf  -DNoRepository -ftemplate-depth-100 -D_FILE_OFFSET_BITS=64 -D_MODE_T_ -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/finiteVolume/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/transportModels -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/transportModels/incompressible/singlePhaseTransportModel -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/meshTools/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/lagrangian/basic/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/lagrangian/intermediate/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/lagrangian/DSMC/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/regionModels/regionModel/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/regionModels/surfaceFilmModels/lnInclude @Make/mingw_w64GccDPInt32Opt/includeHeaderPaths -IlnInclude -I. -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/OpenFOAM/lnInclude -I/home/ofuser/blueCFD/OpenFOAM-5.x/src/OSspecific/MSwindows/lnInclude   -Wl,--output-def,/home/ofuser/blueCFD/ofuser-of5/platforms/mingw_w64GccDPInt32Opt/lib/liblagrangianExtraFunctionObjects.def -Wl,--out-implib,/home/ofuser/blueCFD/ofuser-of5/platforms/mingw_w64GccDPInt32Opt/lib/liblagrangianExtraFunctionObjects.a -Wl,--enable-auto-import -shared @Make/mingw_w64GccDPInt32Opt/objectList -L/home/ofuser/blueCFD/OpenFOAM-5.x/platforms/mingw_w64GccDPInt32Opt/lib \
+    -lOpenFOAM -L/home/ofuser/blueCFD/OpenFOAM-5.x/platforms/mingw_w64GccDPInt32Opt/lib/MS-MPI-7.1 -lPstream -lfiniteVolume -lincompressibleTransportModels -lmeshTools -llagrangian -llagrangianIntermediate -llagrangianTurbulence -lregionModels -lsurfaceFilmModels  -o /home/ofuser/blueCFD/ofuser-of5/platforms/mingw_w64GccDPInt32Opt/lib/liblagrangianExtraFunctionObjects.dll
+/home/ofuser/blueCFD/ThirdParty-5.x/cv2pdb/cv2pdb.exe /home/ofuser/blueCFD/ofuser-of5/platforms/mingw_w64GccDPInt32Opt/lib/liblagrangianExtraFunctionObjects.dll || \
+        (strip --strip-unneeded /home/ofuser/blueCFD/ofuser-of5/platforms/mingw_w64GccDPInt32Opt/lib/liblagrangianExtraFunctionObjects.dll; \
+        /home/ofuser/blueCFD/OpenFOAM-5.x/wmake/scripts/infoCV2PDBworkaround)
+
+$ wclean
 ```
 
 
