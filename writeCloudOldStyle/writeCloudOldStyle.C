@@ -7,6 +7,8 @@
 -------------------------------------------------------------------------------
 July 2019: Bruno Santos @ FSD blueCAPE Lda
            - created function object based on OpenFOAM's cloudInfo
+November 2019: Bruno Santos @ FSD blueCAPE Lda
+           - added support for MPPIC clouds
 -------------------------------------------------------------------------------
 License
     This file is derivative work of OpenFOAM.
