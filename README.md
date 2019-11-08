@@ -121,3 +121,120 @@ following command:
 ```
 find -name positions | while read line; do mv $line $line.orig; mv $line.coord $line; done
 ```
+
+
+Practical example
+=================
+
+Here is a practical example for the tutorial case `lagrangian/MPPICFoam/column`. The
+following commands are used to create a copy of the tutorial case to the default `run`
+folder:
+
+```
+run
+cp -r $FOAM_TUTORIALS/lagrangian/MPPICFoam/column MPPICFoam_column
+cd MPPICFoam_column
+```
+
+Next, it depends on your workflow:
+* If you want the position files to be generated while the solver is running,
+follow the steps on this section: [Example steps for doing things along with the solver](#)
+
+* If you want the position files to be generated after the solver has already been run,
+then follow the steps on this section: [Example steps for doing things after the solver was already used and you don't want to run it again](#)
+
+
+Example steps for doing things along with the solver
+----------------------------------------------------
+
+1. Edit the file `system/controlDict` and add the block `writeCloudOldStyle1`
+inside the block `functions`, as shown here:
+
+    ```
+    functions
+    {
+        writeCloudOldStyle1
+        {
+            type        writeCloudOldStyle;
+            libs        ("liblagrangianExtraFunctionObjects.so");
+    
+            writeControl writeTime;
+    
+            clouds
+            (
+                kinematicCloud
+            );
+        }
+    }
+    ```
+
+2. Save the file `system/controlDict`.
+
+3. Now you can run the solver. For this specific tutorial case, you can run the
+following command, which will run `blockMesh` and `MPPICFoam` for you:
+
+    ```
+    foamRunTutorials
+    ```
+
+4. Once the solver is finished running, run these commands:
+
+   ```
+   find -name positions | while read line; do mv $line $line.coord; mv $line.orig $line; done
+   find -name positions | while read line; do sed -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
+   ```
+
+5. Finally, you can use the following command to start ParaView to open the case
+with the built-in reader:
+
+   ```
+   paraFoam -builtin
+   ```
+
+
+Example steps for doing things after the solver was already used and you don't want to run it again
+---------------------------------------------------------------------------------------------------
+
+1. Create a new file `system/positionConvertDict` and add the following content,
+as shown here:
+
+    ```
+    functions
+    {
+        writeCloudOldStyle1
+        {
+            type        writeCloudOldStyle;
+            libs        ("liblagrangianExtraFunctionObjects.so");
+    
+            writeControl writeTime;
+    
+            clouds
+            (
+                kinematicCloud
+            );
+        }
+    }
+    ```
+
+2. Save the file `system/positionConvertDict`.
+
+3. Now, assuming you already ran the solver for this tutorial, then you can run
+the solver again in post-processing mode, like this:
+
+    ```
+    MPPICFoam -postProcessing -dict system/positionConvertDict
+    ```
+
+4. Once the solver is finished running, run these commands:
+
+   ```
+   find -name positions | while read line; do mv $line $line.coord; mv $line.orig $line; done
+   find -name positions | while read line; do sed -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
+   ```
+
+5. Finally, you can use the following command to start ParaView to open the case
+with the built-in reader:
+
+   ```
+   paraFoam -builtin
+   ```
