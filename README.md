@@ -200,6 +200,23 @@ Example steps for doing things after the solver was already used and you don't w
 as shown here:
 
     ```
+    /*--------------------------------*- C++ -*----------------------------------*\
+    | =========                 |                                                 |
+    | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+    |  \\    /   O peration     | Version:  5.x                                   |
+    |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+    |    \\/     M anipulation  |                                                 |
+    \*---------------------------------------------------------------------------*/
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "system";
+        object      positionConvertDict;
+    }
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
     functions
     {
         writeCloudOldStyle1
@@ -223,7 +240,7 @@ as shown here:
 the solver again in post-processing mode, like this:
 
     ```
-    MPPICFoam -postProcessing -dict system/positionConvertDict
+    MPPICFoam -postProcess -dict system/positionConvertDict
     ```
 
 4. Once the solver is finished running, run these commands:
