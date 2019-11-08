@@ -138,10 +138,11 @@ cd MPPICFoam_column
 
 Next, it depends on your workflow:
 * If you want the position files to be generated while the solver is running,
-follow the steps on this section: [Example steps for doing things along with the solver](#)
+follow the steps on this section: [Example steps for doing things along with the solver](#example-steps-for-doing-things-along-with-the-solver)
 
 * If you want the position files to be generated after the solver has already been run,
-then follow the steps on this section: [Example steps for doing things after the solver was already used and you don't want to run it again](#)
+then follow the steps on this section:
+[Example steps for doing things after the solver was already used and you don't want to run it again](#example-steps-for-doing-things-after-the-solver-was-already-used-and-you-dont-want-to-run-it-again)
 
 
 Example steps for doing things along with the solver
