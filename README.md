@@ -18,6 +18,9 @@ This [git repository](https://github.com/blueCFD/lagrangianExtraFunctionObjects)
 was brought to you by Bruno Santos (wyldckat@github working at
 [FSD blueCAPE Lda](http://www.bluecape.com.pt) - [and FS Dynamics company](http://www.fsdynamics.se)).
 
+Contributions are accepted and respective contributors are also added to
+the README files associated to each branch.
+
 For problems with this library, please report it here:
 https://github.com/blueCFD/lagrangianExtraFunctionObjects/issues
 
