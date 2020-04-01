@@ -6,8 +6,16 @@ EXE_INC = \
     -I$(LIB_SRC)/lagrangian/basic/lnInclude \
     -I$(LIB_SRC)/lagrangian/intermediate/lnInclude \
     -I$(LIB_SRC)/lagrangian/DSMC/lnInclude \
+    -I$(LIB_SRC)/lagrangian/spray/lnInclude \
     -I$(LIB_SRC)/regionModels/regionModel/lnInclude \
-    -I$(LIB_SRC)/regionModels/surfaceFilmModels/lnInclude
+    -I$(LIB_SRC)/regionModels/surfaceFilmModels/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/thermophysicalProperties/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/reactionThermo/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/SLGThermo/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/chemistryModel/lnInclude \
 
 LIB_LIBS = \
     -lfiniteVolume \
@@ -16,5 +24,6 @@ LIB_LIBS = \
     -llagrangian \
     -llagrangianIntermediate \
     -llagrangianTurbulence \
+    -llagrangianSpray \
     -lregionModels \
     -lsurfaceFilmModels
