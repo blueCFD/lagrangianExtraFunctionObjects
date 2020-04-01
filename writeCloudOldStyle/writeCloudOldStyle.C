@@ -9,6 +9,8 @@ July 2019: Bruno Santos @ FSD blueCAPE Lda
            - created function object based on OpenFOAM's cloudInfo
 November 2019: Bruno Santos @ FSD blueCAPE Lda
            - added support for MPPIC clouds
+Apirl 2020: Yan Zhang @ Lund University
+           - added support for spray clouds
 -------------------------------------------------------------------------------
 License
     This file is derivative work of OpenFOAM.
@@ -35,6 +37,9 @@ License
 
 #include "basicKinematicMPPICCloud.H"
 #include "basicKinematicMPPICParcel.H"
+
+#include "basicSprayCloud.H"
+#include "basicReactingParcel.H"
 
 #include "IOPositionOld.H"
 #include "dictionary.H"
@@ -162,6 +167,27 @@ bool Foam::functionObjects::writeCloudOldStyle::write()
             }
             */
         }
+        else if (isA<basicSprayCloud>(kcloud))
+        {
+            const basicSprayCloud& cloud =
+                dynamic_cast<const basicSprayCloud&>(kcloud);
+
+            IOPositionOld<basicSprayCloud> ioP(cloud);
+            ioP.write(cloud.nParcels() > 0);
+            Info<<"cloud.nParcels()==="<<cloud.nParcels()<<endl;
+
+            /*
+            //If you want direct control over the output, here is an example to
+            //write to screen from all processors
+
+            forAllConstIter(basicSprayCloud, cloud, pIter)
+            {
+                const basicReactingParcel& p = pIter();
+
+                Pout << "p:" << p.position() << endl;
+            }
+            */
+        }      
 
     }
 
