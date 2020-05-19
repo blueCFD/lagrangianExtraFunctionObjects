@@ -62,10 +62,34 @@ bool Foam::IOPositionOld<CloudType>::writeData(Ostream& os) const
 {
     os  << cloud_.size() << nl << token::BEGIN_LIST << nl;
 
-    forAllConstIter(typename CloudType, cloud_, iter)
+    if (os.format() == IOstream::ASCII)
     {
-        os  << iter().position() << " " << iter().cell()
-            << nl;
+        forAllConstIter(typename CloudType, cloud_, iter)
+        {
+            os  << iter().position() << " " << iter().cell()
+                << nl;
+        }
+    }
+    else
+    {
+        const size_t sizeofPositionCompat =
+        (
+            offsetof(positionsCompat, facei)
+            - offsetof(positionsCompat, position)
+        );
+
+        forAllConstIter(typename CloudType, cloud_, iter)
+        {
+            positionsCompat p;
+            p.position = iter().position();
+            p.celli = iter().cell();
+            os.write
+            (
+                reinterpret_cast<const char*>(&p.position),
+                sizeofPositionCompat
+            );
+            os  << nl;
+        }
     }
 
     os  << token::END_LIST << endl;
