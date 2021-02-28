@@ -11,6 +11,8 @@ November 2019: Bruno Santos @ FSD blueCAPE Lda
            - added support for MPPIC clouds
 Apirl 2020: Yan Zhang @ Lund University
            - added support for spray clouds
+February 2021: Darrin Stephens @ Applied CCM
+           - added support for reacting multiphase clouds
 -------------------------------------------------------------------------------
 License
     This file is derivative work of OpenFOAM.
@@ -39,6 +41,7 @@ License
 #include "basicKinematicMPPICParcel.H"
 
 #include "basicSprayCloud.H"
+#include "basicReactingMultiphaseCloud.H"
 #include "basicReactingParcel.H"
 
 #include "IOPositionOld.H"
@@ -187,7 +190,20 @@ bool Foam::functionObjects::writeCloudOldStyle::write()
                 Pout << "p:" << p.position() << endl;
             }
             */
-        }      
+        }
+        else if (isA<basicReactingMultiphaseCloud>(kcloud))
+        {
+            const basicReactingMultiphaseCloud& cloud =
+                dynamic_cast<const basicReactingMultiphaseCloud&>(kcloud);
+
+            IOPositionOld<basicReactingMultiphaseCloud> ioP(cloud);
+            ioP.write(cloud.nParcels() > 0);
+        }
+        else
+        {
+            Info<< "Cloud: "<<cloudName<<" is not a supported type"
+                << nl << endl;
+        }
 
     }
 
