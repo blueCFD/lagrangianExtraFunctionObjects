@@ -9,7 +9,7 @@ July 2019: Bruno Santos @ FSD blueCAPE Lda
            - created function object based on OpenFOAM's cloudInfo
 November 2019: Bruno Santos @ FSD blueCAPE Lda
            - added support for MPPIC clouds
-Apirl 2020: Yan Zhang @ Lund University
+April 2020: Yan Zhang @ Lund University
            - added support for spray clouds
 February 2021: Darrin Stephens @ Applied CCM
            - added support for reacting multiphase clouds
@@ -177,7 +177,6 @@ bool Foam::functionObjects::writeCloudOldStyle::write()
 
             IOPositionOld<basicSprayCloud> ioP(cloud);
             ioP.write(cloud.nParcels() > 0);
-            Info<<"cloud.nParcels()==="<<cloud.nParcels()<<endl;
 
             /*
             //If you want direct control over the output, here is an example to
