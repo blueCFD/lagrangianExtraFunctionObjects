@@ -58,7 +58,7 @@ For getting and building from git:
 
 ```
 user
-git clone git://github.com/blueCFD/lagrangianExtraFunctionObjects.git
+git clone https:://github.com/blueCFD/lagrangianExtraFunctionObjects.git
 cd lagrangianExtraFunctionObjects
 git checkout blueCFD-Core-2017
 wmake
