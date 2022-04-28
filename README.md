@@ -59,7 +59,7 @@ How to get+build lagrangianExtraFunctionObjects
 For getting and building from git:
 
 ```
-git clone git://github.com/blueCFD/lagrangianExtraFunctionObjects.git
+git clone https://github.com/blueCFD/lagrangianExtraFunctionObjects.git
 cd lagrangianExtraFunctionObjects
 git checkout OF5x
 wmake
