@@ -5,6 +5,8 @@ lagrangianExtraFunctionObjects
 OpenFOAM 5, to write to disk in the old `positions` file format.
 
 **Note**: This branch `OF5x` refers to the code adapted to build with OpenFOAM 5.x.
+It has been tested with success with OpenFOAM 8, so it should at least work with
+OpenFOAM 6 and 7 as well.
 
 * Please see the other branches for which OpenFOAM version you can use this on.
 
