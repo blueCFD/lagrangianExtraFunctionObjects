@@ -5,7 +5,7 @@ lagrangianExtraFunctionObjects
 OpenFOAM 5, to write to disk in the old `positions` file format.
 
 **Note**: This branch `blueCFD-Core-2017` refers to the code adapted to build
-with blueCFD-Core 2017.
+with blueCFD-Core 2017. It also works with blueCFD-Core 2020.
 
 * Please see the other branches for which OpenFOAM version you can use this on.
 
