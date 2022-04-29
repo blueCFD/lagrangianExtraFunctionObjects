@@ -261,3 +261,18 @@ with the built-in reader:
    ```
    paraFoam -builtin
    ```
+
+**Warning**: If you get an error message such as this:
+
+```
+--> FOAM FATAL ERROR: 
+
+    request for kinematicCloud coalCloud1 from objectRegistry region0 failed
+    available objects of type kinematicCloud are
+0()
+```
+
+This means that the solver does not load the clouds for post-processing. You
+will either have to use swak4Foam to load the cloud, or use a custom function
+object to do it for you. Alternatively, you can report this issue to the bug
+tracker of the respective OpenFOAM version/variant you are using.
