@@ -23,6 +23,7 @@ was brought to you by Bruno Santos (wyldckat@github working at
 Additional contributors:
 * [Yan Zhang @ Lund University](https://github.com/ZhangYanTJU)
 * [Darrin Stephens @ Applied CCM](https://github.com/dwstephens)
+* [ZmengXu @ Department of Energy Sciences, Lund University, Sweden](https://github.com/ZmengXu)
 
 For problems with this library, please report it here:
 https://github.com/blueCFD/lagrangianExtraFunctionObjects/issues
