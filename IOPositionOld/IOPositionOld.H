@@ -63,17 +63,11 @@ class IOPositionOld
 
 public:
 
-    //- Old particle positions content for OpenFOAM-5/OpenFOAM-1706 and earlier
+    //- Old particle positions content for OpenFOAM-4 and older
     struct positionsCompat
     {
         vector position;
         label celli;
-        label facei;
-        scalar stepFraction;
-        label tetFacei;
-        label tetPti;
-        label origProc;
-        label origId;
     };
 
     // Static data

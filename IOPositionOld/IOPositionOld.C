@@ -72,15 +72,15 @@ bool Foam::IOPositionOld<CloudType>::writeData(Ostream& os) const
     }
     else
     {
+        positionsCompat p;
         const size_t sizeofPositionCompat =
         (
-            offsetof(positionsCompat, facei)
-            - offsetof(positionsCompat, position)
+            sizeof(p.position)
+          + sizeof(p.celli)
         );
 
         forAllConstIter(typename CloudType, cloud_, iter)
         {
-            positionsCompat p;
             p.position = iter().position();
             p.celli = iter().cell();
             os.write
