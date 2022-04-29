@@ -134,7 +134,7 @@ Therefore, before you run `paraFoam -builtin`, you must run these commands:
 
 ```
 find -name positions | while read line; do mv $line $line.coord; mv $line.orig $line; done
-find -name positions | while read line; do sed -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
+find -name positions | while read line; do sed -b -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
 ```
 
 They will rename all `positions` files to `positions.coord`, along with renaming
@@ -207,7 +207,7 @@ following command, which will run `blockMesh` and `MPPICFoam` for you:
 
    ```
    find -name positions | while read line; do mv $line $line.coord; mv $line.orig $line; done
-   find -name positions | while read line; do sed -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
+   find -name positions | while read line; do sed -b -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
    ```
 
 5. Finally, you can use the following command to start ParaView to open the case
@@ -272,7 +272,7 @@ the solver again in post-processing mode, like this:
 
    ```
    find -name positions | while read line; do mv $line $line.coord; mv $line.orig $line; done
-   find -name positions | while read line; do sed -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
+   find -name positions | while read line; do sed -b -i -e 's=^\(.*object.*\)positions.orig;=\1positions;=' $line; done
    ```
 
 5. Finally, you can use the following command to start ParaView to open the case
